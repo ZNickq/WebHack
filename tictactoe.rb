@@ -12,13 +12,20 @@ class TTTTest < Test::Unit::TestCase
 		end
 	end
 
+	def test_new_player
+		assert_equal @player_test.name, "X"
+	end
+
+
 end
 
 class TicTacToePlayer
 
-
+	def name
+		return @name
+	end
+	
 	def initialize (name)
-		@name = name
 	end
 
 	def turn(game_state)
