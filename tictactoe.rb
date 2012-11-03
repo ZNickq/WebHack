@@ -22,7 +22,9 @@ class TicTacToePlayer
 	end
 
 	def turn(game_state)
-		raise 'Not implemented yet!'
+		if(game_state.class != Hash)
+			return game_state
+		end
 	end
 
 end
