@@ -30,6 +30,24 @@ class TTTTest < Test::Unit::TestCase
 		assert game_state["owned_by_"+@player_x.name] != nil && game_state["owned_by_"+@player_0.name] != nil
 	end
 
+	def test_board_play
+		game_state = @player_x.turn(Hash.new)
+		isX = true
+		moves = 0
+		while game_state["message"] == nil
+			if isX
+				game_state = @player_x.turn(game_state)
+			else
+				game_state = @player_0.turn(game_state)
+			end
+			isX = !isX
+			moves = moves + 1
+			break if moves == 9
+		end
+		assert game_state["message"] != nil , "Game didn't finish properly!"
+		puts game_state["message"]
+	end
+
 
 end
 
