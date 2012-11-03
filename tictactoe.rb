@@ -26,6 +26,7 @@ class TicTacToePlayer
 	end
 	
 	def initialize (name)
+		@name = name
 	end
 
 	def turn(game_state)
