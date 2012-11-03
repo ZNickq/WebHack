@@ -47,6 +47,9 @@ class TicTacToePlayer
 		if(game_state.class != Hash)
 			raise 'Wrong game state, not a hash!'
 		end
+		if game_state["owned_by_"+@name] == nil 
+			game_state["owned_by_"+@name] = []
+		end
 		return game_state
 	end
 
