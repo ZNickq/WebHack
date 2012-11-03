@@ -13,7 +13,7 @@ class TTTTest < Test::Unit::TestCase
 	end
 
 	def test_wrong_argument
-		assert_raise do 
+		assert_raise RuntimeError do 
 			@player_test.turn []
 		end
 	end
@@ -37,7 +37,7 @@ class TicTacToePlayer
 
 	def turn(game_state)
 		if(game_state.class != Hash)
-			return game_state
+			raise 'Wrong game state, not a hash!'
 		end
 		return game_state
 	end
