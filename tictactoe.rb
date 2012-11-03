@@ -8,6 +8,12 @@ class TTTTest < Test::Unit::TestCase
 
 	def test_one_argument
 		assert_nothing_raised do 
+			@player_test.turn Hash.new
+		end
+	end
+
+	def test_wrong_argument
+		assert_raise do 
 			@player_test.turn []
 		end
 	end
@@ -33,6 +39,7 @@ class TicTacToePlayer
 		if(game_state.class != Hash)
 			return game_state
 		end
+		return game_state
 	end
 
 end
