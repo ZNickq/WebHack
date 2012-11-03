@@ -52,6 +52,15 @@ class TTTTest < Test::Unit::TestCase
 end
 
 class TicTacToePlayer
+ 	BOARD = [:a1, :a2, :a3, :b1, :b2, :b3, :c1, :c2, :c3]
+  	WINNING_COMBINATIONS = [[:a1, :a2, :a3],
+                          [:b1, :b2, :b3],
+                          [:c1, :c2, :c3],
+                          [:a1, :b1, :c1],
+                          [:a2, :b2, :c2],
+                          [:a3, :b3, :c3],
+                          [:a1, :b2, :c3],
+                          [:c1, :b2, :a3]]
 
 	def name
 		return @name
@@ -67,6 +76,22 @@ class TicTacToePlayer
 		end
 		if game_state["owned_by_"+@name] == nil 
 			game_state["owned_by_"+@name] = []
+		end
+		temp = BOARD
+		endCheck = 0
+		game_state.each { |key, value| 
+			temp = temp - value
+			endCheck = endCheck + value.size
+		}
+		if endCheck == 9
+			game_state["message"] = "Game over, nobody won!"
+			return game_state
+		end
+		game_state["owned_by_"+@name] << temp.sample
+      		WINNING_COMBINATIONS.each do |wcomb|
+			if (wcomb - game_state["owned_by_"+@name]).empty?
+				game_state["message"]="Game over, "+@name+" won!"
+			end
 		end
 		return game_state
 	end
